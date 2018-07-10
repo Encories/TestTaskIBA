@@ -1,0 +1,9 @@
+
+]squid:S1075"ARefactor your code to get this URI from a customizable parameter.(Ø½„ıÿÿÿÿ
+ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±±ñÿÿÿÿÿ
+Xsquid:S2259!"AA "NullPointerException" could be thrown; "out" is nullable here.(²úıÏ
+?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Lsquid:S1191"5Use classes from the Java API instead of Sun classes.(ÇõŞ¶
+Fsquid:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(øüáıÿÿÿÿ

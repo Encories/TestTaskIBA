@@ -1,0 +1,9 @@
+
+]squid:S2259"?A "NullPointerException" could be thrown; "p" is nullable here.(ŠÖ8ˆáÍ¥È,
+Fsquid:S1148$"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ñğú¥È,
+dsquid:S1075"ARefactor your code to get this URI from a customizable parameter.(ŞÚ¡±üÿÿÿÿ8ø…Ù È,
+Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ˆáÍ¥È,
+Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ˆáÍ¥È,
+[
+squid:S1064"9Replace this use of System.out or System.err by a logger.(ñ—¸½úÿÿÿÿ8ˆáÍ¥È,
+isquid:CommentedOutCodeLine'"<This block of commented-out lines of code should be removed.(•ø©Õ8û±ú¥È,
