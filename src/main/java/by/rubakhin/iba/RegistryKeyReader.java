@@ -2,39 +2,28 @@ package by.rubakhin.iba;
 
 import com.sun.jna.platform.win32.*;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 
 public class RegistryKeyReader {
-
-    public static final String REGISTRYKEYSFILE_PATH = "C:\\Users\\pika4\\Documents\\10.07\\final\\1\\src\\main\\java\\by\\rubakhin\\iba\\registryKeys.txt";
-
+    public static final String REGISTRYKEYSFILE_PATH = "src/main/resources/registryKeys.txt";
     public void RegistryKeyRead(String value, String regName) {
-
-
-
-
-        // Read a string
         String productName = Advapi32Util.registryGetStringValue(
-                WinReg.HKEY_LOCAL_MACHINE, value /*"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",  "ProductName" */, regName );
+                /*"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",  "ProductName" */
+                WinReg.HKEY_LOCAL_MACHINE, value, regName );
 
-        System.out.printf("Product Name: %s%n", productName);
+        try (PrintWriter out = new PrintWriter(REGISTRYKEYSFILE_PATH)){
 
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter(REGISTRYKEYSFILE_PATH);
             out.println(productName);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }finally {
-            //После чего мы должны закрыть файл
-            //Иначе файл не запишется
-            out.close();}
-
-
-
-
+            try (FileWriter fstream = new FileWriter("src/main/resources/rk_err.txt")){
+                BufferedWriter bufferedWriter=new BufferedWriter(fstream);
+                bufferedWriter.write(e.toString());
+                bufferedWriter.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 }
 

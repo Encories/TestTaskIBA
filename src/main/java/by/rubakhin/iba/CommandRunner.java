@@ -4,52 +4,42 @@ import java.io.*;
 
 public class CommandRunner {
 
-    public static final String CMDFILE_PATH = "C:\\Users\\pika4\\Documents\\10.07\\final\\1\\src\\main\\resources\\cmd_out.txt";
+    public static final String CMDFILE_PATH = "src/main/resources/cmd_out.txt";
 
     public void excCommand(String value) {
 
-           ProcessBuilder builder = new ProcessBuilder(value,
-              /*  "cmd.exe"  , */ "/c", "cd \"C:\\Program Files\\MySQL\" && dir" );
+           ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe"  , value);
         builder.redirectErrorStream(true);
-        Process p = null;
+        Process process = null;
         try {
-            p = builder.start();
+            process = builder.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line = null;
         while (true) {
             try {
-                line = r.readLine();
+                line = bufferedReader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             if (line == null) {
                 break;
             }
-
-
             try (FileWriter out = new FileWriter(CMDFILE_PATH, true)) {
                 out.write(line + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                try (FileWriter fstream = new FileWriter("src/main/resources/cmd_err.txt")){
+                    BufferedWriter out=new BufferedWriter(fstream);
+                    out.write(e.toString());
+                    out.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
             }
-
-           /* PrintWriter out = null;
-            try {
-                out = new PrintWriter(CMDFILE_PATH, true);
-                out.println(line);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }finally {
-                //После чего мы должны закрыть файл
-                //Иначе файл не запишется
-                out.close();}*/
-
-
-
-            System.out.println(line);
         }
     }
 }
