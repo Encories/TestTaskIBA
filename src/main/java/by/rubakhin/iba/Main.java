@@ -32,17 +32,8 @@ public class Main {
             default :
                 System.out.println("Неверный флаг параметра");
         }
-
-
-
-
-    }
-
-
-
-
-
-    }
+   }
+}
 
 
 
