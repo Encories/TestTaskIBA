@@ -1,36 +1,37 @@
 package by.rubakhin.iba;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Scanner;
 
 public class Main {
+    private static final Logger LOG = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-
-
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите флаг параметра:");
+        LOG.info("Введите флаг параметра:");
         String flag = in.nextLine();
-        System.out.println("Введите значение параметра:");
+        LOG.info("Введите значение параметра:");
         String value = in.nextLine();
 
-        switch(flag)
-        {
+        switch(flag) {
             case "-f":
-                FileReader fileReader = new FileReader();
-                fileReader.Read(value);
+                CommandReader fileReader = new CommandReader();
+                fileReader.readCommandFromConsole(value);
                 break;
             case "-rk":
-                System.out.println("Введите имя параметра реестра:");
+                LOG.info("Введите имя параметра реестра:");
                 String regName = in.nextLine();
                 RegistryKeyReader registryKeyReader = new RegistryKeyReader();
-                registryKeyReader.RegistryKeyRead(value, regName);
+                registryKeyReader.registryKeyRead(value, regName);
                 break;
             case "-cmd":
                 CommandRunner commandRunner = new CommandRunner();
                 commandRunner.excCommand(value);
                 break;
             default :
-                System.out.println("Неверный флаг параметра");
+                LOG.info("Неверный флаг параметра");
         }
    }
 }

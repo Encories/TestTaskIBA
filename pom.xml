@@ -7,6 +7,31 @@
     <groupId>TestTaskIBA</groupId>
     <artifactId>TestTaskIBA</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <logger.version>2.11.0</logger.version>
+        <jna.version>4.5.1</jna.version>
+        <jna.platform.version>3.4.0</jna.platform.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${logger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>platform</artifactId>
+            <version>${jna.platform.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -19,14 +44,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-            <version>4.5.1</version>
-        </dependency>
-    </dependencies>
-
 
 </project>

@@ -1,10 +1,14 @@
 package by.rubakhin.iba;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 
-public class CommandRunner {
-
-    public static final String CMDFILE_PATH = "src/main/resources/cmd_out.txt";
+class CommandRunner {
+    private static final Logger LOG = LogManager.getLogger(CommandRunner.class);
+    private static final String CMD_FILE_PATH = "src/main/resources/cmd_out.txt";
+    private static final String ERR_FILE_PATH = "src/main/resources/cmd_err.txt";
 
     public void excCommand(String value) {
 
@@ -15,7 +19,7 @@ public class CommandRunner {
         try {
             process = builder.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line = null;
@@ -23,22 +27,15 @@ public class CommandRunner {
             try {
                 line = bufferedReader.readLine();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOG.error(e);
             }
             if (line == null) {
                 break;
             }
-            try (FileWriter out = new FileWriter(CMDFILE_PATH, true)) {
+            try (FileWriter out = new FileWriter(CMD_FILE_PATH, true)) {
                 out.write(line + "\n");
             } catch (IOException e) {
-                try (FileWriter fstream = new FileWriter("src/main/resources/cmd_err.txt")){
-                    BufferedWriter out=new BufferedWriter(fstream);
-                    out.write(e.toString());
-                    out.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
+                RegistryKeyReader.handleIOException(e, ERR_FILE_PATH, LOG);
             }
         }
     }

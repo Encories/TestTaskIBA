@@ -1,0 +1,1 @@
+java.io.FileNotFoundException: C:\Users\pika4\Documents\11.07\TestTaskIBA\src\main\resources\input.txt (Не удается найти указанный файл)
